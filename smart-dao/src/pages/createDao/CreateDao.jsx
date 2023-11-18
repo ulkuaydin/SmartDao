@@ -1,27 +1,29 @@
-
 import StepOne from "./StepOne";
 import { useSelector } from "react-redux";
 import StepTwo from "./StepTwo";
 import StepThree from "./StepThree";
+import StepFour from "./StepFour";
 
 const CreateDao = () => {
-  const index = useSelector((state)=>state.form.index);
-  const step = ()=>{
+  const index = useSelector((state) => state.form.index);
+  const step = () => {
     switch (index) {
-        case 0:
-            return <StepOne/>
-            
-         case 1:
-            return <StepTwo/>
+      case 0:
+        return <StepOne />;
 
-        case 2:
-            return <StepThree/>
-            
+      case 1:
+        return <StepTwo />;
 
-        default:
-            break;
-      }
-  }
+      case 2:
+        return <StepThree />;
+
+      case 3:
+        return <StepFour />;
+
+      default:
+        break;
+    }
+  };
   return (
     <div className="container">
       <div className="dao" id="dao">
@@ -29,7 +31,7 @@ const CreateDao = () => {
           <h6 className="create-dao-title">Create Dao</h6>
           <div className="create-dao-form">
             <div className="progress-bar"></div>
-           {step()}
+            {step()}
           </div>
         </div>
       </div>

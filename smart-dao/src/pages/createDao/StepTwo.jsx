@@ -1,18 +1,14 @@
 import { useFormik } from "formik";
 import { useDispatch } from "react-redux";
-import { setIndex } from "../../redux/reducers/formSlice";
+import { setStateTwo } from "../../redux/reducers/formSlice";
 import Web3 from "web3";
 import SmartDaoService from "../../utils/smartDaoService";
 import metamaskService from "../../utils/metamaskService";
 import { useState } from "react";
 
-const Modal = ({ isOpen, toggleModal, contractAddress,dispatch }) => {
+const Modal = ({ isOpen, toggleModal, contractAddress, dispatch }) => {
   if (!isOpen) return null;
- 
-   const nextStep = ()=>{
-    
-    dispatch(setIndex())
-   }
+
   return (
     <div
       className={isOpen ? "modal fade show d-block" : "modal fade d-none"}
@@ -50,7 +46,9 @@ const Modal = ({ isOpen, toggleModal, contractAddress,dispatch }) => {
             </div>
           </div>
           <div className="modal-footer text-center border-top-0">
-            <button type="button" className="submit" onClick={nextStep}>Next</button>
+            <button type="button" className="submit" onClick={toggleModal}>
+              Next
+            </button>
           </div>
         </div>
       </div>
@@ -73,18 +71,40 @@ const StepTwo = () => {
 
   const validate = (values) => {
     const errors = {};
-    if (!values.voterType) {
-      errors.voterType = "Required";
+    if (values.voterType === "token") {
+      if (values.haveToken === "yes") {
+        if (!values.address) {
+          errors.address = "Required";
+        }
+      } else {
+        if (!values.tokenName) {
+          errors.tokenName = "Required";
+        }
+        if (!values.tokenSymbol) {
+          errors.tokenSymbol = "Required";
+        }
+        if (!values.tokenSupply) {
+          errors.tokenSupply = "Required";
+        }
+      }
+    } else {
+      if (values.haveNft === "yes") {
+        if (!values.address) {
+          errors.address = "Required";
+        }
+      } else {
+        if (!values.nftName) {
+          errors.nftName = "Required";
+        }
+        if (!values.nftSymbol) {
+          errors.nftSymbol = "Required";
+        }
+        if (!values.nftSupply) {
+          errors.nftSupply = "Required";
+        }
+      }
     }
-    if (!values.tokenName) {
-      errors.tokenName = "Required";
-    }
-    if (!values.tokenSymbol) {
-      errors.tokenSymbol = "Required";
-    }
-    if (!values.tokenSupply) {
-      errors.tokenSupply = "Required";
-    }
+    console.log("validate errors", errors,values);
     return errors;
   };
 
@@ -95,7 +115,6 @@ const StepTwo = () => {
       haveNft: "",
       address: "",
       tokenName: "",
-      tokenSymbol: "",
       tokenSupply: "",
       nftName: "",
       nftSymbol: "",
@@ -103,7 +122,7 @@ const StepTwo = () => {
     },
     validate,
     onSubmit: async (values) => {
-      console.log(values);
+      console.log("ONSUBMIT", values);
       if (
         values.address === "" &&
         (values.haveNft === "no" || values.haveToken === "no")
@@ -112,15 +131,20 @@ const StepTwo = () => {
         const accounts = await web3.eth.getAccounts();
         console.log("get account", metamaskService.getAccount());
         let newService = new SmartDaoService(
-          "0xb00A7CD04b0d005702aFC4f5ccB3671E0F5bF512",
+          "0xb00A7CD04b0d005702aFC4f5ccB3671E0F5bF512", //TODO get this from app consntan or use service singleton
           web3,
           accounts[0]
         );
+
         if (values.voterType === "token") {
           // Begin listening for DaoCreated events
           newService.listenToERC20Created((eventData) => {
             console.log("New ERC20 Created:", eventData._contractAddress);
             setContractAddress(eventData._contractAddress);
+
+            //Set values
+            values.haveToken = "yes";
+            values.address = eventData._contractAddress;
 
             toggleModal();
           });
@@ -130,17 +154,27 @@ const StepTwo = () => {
             values.tokenSymbol,
             values.tokenSupply
           );
-        }
-        if (values.voterType === "nft") {
+        } else {
           newService.listenToERC721Created((eventData) => {
             console.log("New ERC20 Created:", eventData._contractAddress);
             setContractAddress(eventData._contractAddress);
+
+            //Set values
+            values.haveNft = "yes";
+            values.address = eventData._contractAddress;
+
             toggleModal();
           });
+
+          newService.createDefaultERC721(
+            values.nftName,
+            values.nftSymbol,
+            values.nftSupply
+          );
         }
       } else {
-        console.log(values);
-        dispatch(setIndex());
+        console.log("next2");
+        dispatch(setStateTwo(values));
       }
     },
   });
@@ -297,6 +331,7 @@ const StepTwo = () => {
                       type="text"
                       className="form-control"
                       placeholder="Enter token address"
+                      name="address"
                       onChange={formik.handleChange}
                       value={formik.values.address}
                       style={{ maxWidth: "290px" }}
@@ -391,7 +426,7 @@ const StepTwo = () => {
         isOpen={isModalOpen}
         toggleModal={toggleModal}
         contractAddress={contractAddress}
-        dispatch = {dispatch}
+        dispatch={dispatch}
       />
     </>
   );
