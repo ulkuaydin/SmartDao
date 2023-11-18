@@ -49,7 +49,7 @@ const Mainpage = () => {
          <div className="col-lg-4">
          <div className="discover-dao-search position-relative">
             <input className="form-control" type="text" name="" id="" placeholder="Search Dao" />
-            <button className="position-absolute search" type="button"><img src="src/assets/search.svg" alt="..." /></button>
+            <button className="position-absolute search" type="button"><img src="/public/search.svg" alt="..." /></button>
           </div>
          </div>
         
@@ -57,14 +57,16 @@ const Mainpage = () => {
             <div className="row">
             {dao.value.map((item,key)=>
             
-                <div className="col-lg-2" key={key}>
-                <div className="discover-dao-item">
+                <div className="col-2 col-lg-2" key={key}>
+                <div className="discover-dao-item position-relative">
                <div className="logo d-flex align-items-center justify-content-center"  style={{ background: getRandomColorFromSelected() }}>
                 <span>{item.daoName.slice(0,2)}</span>
                 
                </div>
                <h6 className="text-center mt-2">{item.daoName}</h6>
+               <Link to={'/daoDetail/1'} className="position-absolute top-0 start-0 end-0 bottom-0"></Link>
               </div>
+          
                 </div>
                 
               )}

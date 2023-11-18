@@ -1,0 +1,62 @@
+.dao-detail-contract-list {
+}
+.dao-detail-contract-list li span {
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 150%; /* 30px */
+  letter-spacing: -0.38px;
+  text-align: center;
+}
+.dao-detail-vote-title {
+  font-size: 25px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 150%; /* 37.5px */
+  letter-spacing: -0.475px;
+}
+.dao-vote-list {
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+}
+.dao-vote-list .dao-vote-item {
+  border-radius: 30px;
+  border: 2px solid #fcd98e;
+  background: rgba(251, 255, 253, 0.55);
+  backdrop-filter: blur(17.5px);
+  padding: 43px 37px;
+}
+.dao-vote-list .dao-vote-item .green {
+  color: #36b671;
+}
+.dao-vote-list .dao-vote-item .dao-vote-item-header h6,
+.dao-vote-list .dao-vote-item .dao-vote-item-header span {
+  font-size: 25px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 150%; /* 37.5px */
+  letter-spacing: -0.475px;
+}
+.progress-choice {
+  border-radius: 3px;
+  border: 1px solid #ff961a;
+  background: rgba(252, 217, 142, 0.35);
+  max-width: 310px;
+  height: 20px;
+  width: 100%;
+}
+.choices-item .form-check label {
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 150%; /* 30px */
+  letter-spacing: -0.38px;
+}
+.date {
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 150%; /* 24px */
+  letter-spacing: -0.304px;
+}

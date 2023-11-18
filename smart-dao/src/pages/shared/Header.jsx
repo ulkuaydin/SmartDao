@@ -40,7 +40,7 @@ const Header = () => {
         <div className="container">
           <div className="d-flex justify-content-between align-items-center h-100">
             <div className="logo">
-              <img src="src/assets/react.svg" alt="..." />
+              <img src="/public/react.svg" alt="..." />
             </div>
 
             {user.success ? (

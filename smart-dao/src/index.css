@@ -3,10 +3,11 @@
 @import '../src/assets/styles/components/header.css';
 @import '../src/assets/styles/components/mainPage.css';
 @import '../src/assets/styles/components/createDao.css';
+@import '../src/assets/styles/components/daoDetail.css';
 body{
   color: #292D32;
   font-family: 'regulator-nova',sans-serif;
-  background: url("../src/assets/dashboard.svg")no-repeat;
+  background: url("../public/dashboard.svg")no-repeat;
   background-size:cover;
 }
 button{

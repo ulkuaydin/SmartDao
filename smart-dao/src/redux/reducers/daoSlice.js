@@ -13,7 +13,7 @@ const initialState = {
 export const getDao = createAsyncThunk('dao/getDao',async()=>{
 
        const web3 = new Web3(window.ethereum);
-       const newService = new SmartDaoService("0x67E2BDA3E682186343E2495b1F244e02127188F1",web3,metamaskService.getAccount());
+       const newService = new SmartDaoService("0xb00A7CD04b0d005702aFC4f5ccB3671E0F5bF512",web3,metamaskService.getAccount());
      const dao = newService.getDAOs().then(response=>{
        console.log(response);
         return response;
