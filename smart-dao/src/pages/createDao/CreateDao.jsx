@@ -13,9 +13,10 @@ const CreateDao = () => {
             
          case 1:
             return <StepTwo/>
-            
+
         case 2:
             return <StepThree/>
+            
 
         default:
             break;
@@ -23,7 +24,7 @@ const CreateDao = () => {
   }
   return (
     <div className="container">
-      <div className="dao">
+      <div className="dao" id="dao">
         <div className="create-dao">
           <h6 className="create-dao-title">Create Dao</h6>
           <div className="create-dao-form">

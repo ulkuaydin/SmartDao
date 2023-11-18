@@ -36,7 +36,7 @@
   line-height: 150%; /* 24px */
   letter-spacing: -0.304px;
 }
-.create-dao-button button {
+.create-dao-button button,.submit {
   border-radius: 15px;
   background: #80f0b3;
   box-shadow: -1px 1px 2px 0px rgba(0, 0, 0, 0.1),
@@ -65,3 +65,14 @@
   letter-spacing: -0.475px;
 }
 
+.modal-dialog .address{
+    font-size: 16px;
+font-style: normal;
+font-weight: 600;
+line-height: 150%; /* 24px */
+letter-spacing: -0.304px;
+}
+.modal-body img{
+    object-fit: cover;
+    width: 100%;
+}

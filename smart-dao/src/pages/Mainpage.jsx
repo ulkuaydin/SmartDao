@@ -18,8 +18,9 @@ const Mainpage = () => {
     return colors[Math.floor(Math.random() * colors.length)];
   }
   return (
+    
     <div className="container">
-      <div className="dao">
+      <div className="dao" >
       <div className="create-dao">
         <div className="row">
           <div className="col-lg-12">

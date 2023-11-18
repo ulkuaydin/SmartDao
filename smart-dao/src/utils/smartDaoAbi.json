@@ -3,173 +3,6 @@
 		"inputs": [
 			{
 				"internalType": "address",
-				"name": "_VotingContractFactory",
-				"type": "address"
-			},
-			{
-				"internalType": "address",
-				"name": "_TreasuryContractFactory",
-				"type": "address"
-			},
-			{
-				"internalType": "address",
-				"name": "_DefaultERC20Factory",
-				"type": "address"
-			},
-			{
-				"internalType": "address",
-				"name": "_DefaultERC721Factory",
-				"type": "address"
-			},
-			{
-				"internalType": "address",
-				"name": "_StorageContract",
-				"type": "address"
-			}
-		],
-		"stateMutability": "nonpayable",
-		"type": "constructor"
-	},
-	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": false,
-				"internalType": "string",
-				"name": "_daoName",
-				"type": "string"
-			},
-			{
-				"indexed": false,
-				"internalType": "address",
-				"name": "VotingContract",
-				"type": "address"
-			},
-			{
-				"indexed": false,
-				"internalType": "address",
-				"name": "_votingOpener",
-				"type": "address"
-			},
-			{
-				"indexed": false,
-				"internalType": "address",
-				"name": "_voter",
-				"type": "address"
-			},
-			{
-				"indexed": false,
-				"internalType": "address",
-				"name": "TreasuryContract",
-				"type": "address"
-			},
-			{
-				"indexed": false,
-				"internalType": "address",
-				"name": "_treasuryVotingOpener",
-				"type": "address"
-			},
-			{
-				"indexed": false,
-				"internalType": "address",
-				"name": "_treasuryVoter",
-				"type": "address"
-			},
-			{
-				"indexed": false,
-				"internalType": "string",
-				"name": "_logoURL",
-				"type": "string"
-			},
-			{
-				"indexed": false,
-				"internalType": "string",
-				"name": "_website",
-				"type": "string"
-			}
-		],
-		"name": "daoCreated",
-		"type": "event"
-	},
-	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": true,
-				"internalType": "address",
-				"name": "_contractAddress",
-				"type": "address"
-			},
-			{
-				"indexed": false,
-				"internalType": "string",
-				"name": "_name",
-				"type": "string"
-			},
-			{
-				"indexed": false,
-				"internalType": "string",
-				"name": "_symbol",
-				"type": "string"
-			},
-			{
-				"indexed": false,
-				"internalType": "uint256",
-				"name": "_totalSupply",
-				"type": "uint256"
-			}
-		],
-		"name": "erc20Created",
-		"type": "event"
-	},
-	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": true,
-				"internalType": "address",
-				"name": "_contractAddress",
-				"type": "address"
-			},
-			{
-				"indexed": false,
-				"internalType": "string",
-				"name": "_name",
-				"type": "string"
-			},
-			{
-				"indexed": false,
-				"internalType": "string",
-				"name": "_symbol",
-				"type": "string"
-			},
-			{
-				"indexed": false,
-				"internalType": "uint256",
-				"name": "_totalSupply",
-				"type": "uint256"
-			}
-		],
-		"name": "erc721Created",
-		"type": "event"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "_newContract",
-				"type": "address"
-			}
-		],
-		"name": "changTreasuryContractFactory",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
 				"name": "_newContract",
 				"type": "address"
 			}
@@ -201,6 +34,19 @@
 			}
 		],
 		"name": "changeVotingContractFactory",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_newContract",
+				"type": "address"
+			}
+		],
+		"name": "changTreasuryContractFactory",
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
@@ -364,6 +210,124 @@
 		"inputs": [
 			{
 				"internalType": "address",
+				"name": "_VotingContractFactory",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "_TreasuryContractFactory",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "_DefaultERC20Factory",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "_DefaultERC721Factory",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "_StorageContract",
+				"type": "address"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "uint256",
+				"name": "_index",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "address",
+				"name": "VotingContract",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "address",
+				"name": "TreasuryContract",
+				"type": "address"
+			}
+		],
+		"name": "daoCreated",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "_contractAddress",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "string",
+				"name": "_name",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"internalType": "string",
+				"name": "_symbol",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "_totalSupply",
+				"type": "uint256"
+			}
+		],
+		"name": "erc20Created",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "_contractAddress",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "string",
+				"name": "_name",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"internalType": "string",
+				"name": "_symbol",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "_totalSupply",
+				"type": "uint256"
+			}
+		],
+		"name": "erc721Created",
+		"type": "event"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
 				"name": "_treasuryVotingContractAddress",
 				"type": "address"
 			},
@@ -374,6 +338,52 @@
 			}
 		],
 		"name": "finishTreasuryVoting",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_votingContractAddress",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_index",
+				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "_choice",
+				"type": "string"
+			}
+		],
+		"name": "voteGeneral",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_treasuryVotingContractAddress",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_index",
+				"type": "uint256"
+			},
+			{
+				"internalType": "bool",
+				"name": "_vote",
+				"type": "bool"
+			}
+		],
+		"name": "voteTreasury",
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
@@ -616,52 +626,6 @@
 			}
 		],
 		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "_votingContractAddress",
-				"type": "address"
-			},
-			{
-				"internalType": "uint256",
-				"name": "_index",
-				"type": "uint256"
-			},
-			{
-				"internalType": "string",
-				"name": "_choice",
-				"type": "string"
-			}
-		],
-		"name": "voteGeneral",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "_treasuryVotingContractAddress",
-				"type": "address"
-			},
-			{
-				"internalType": "uint256",
-				"name": "_index",
-				"type": "uint256"
-			},
-			{
-				"internalType": "bool",
-				"name": "_vote",
-				"type": "bool"
-			}
-		],
-		"name": "voteTreasury",
-		"outputs": [],
-		"stateMutability": "nonpayable",
 		"type": "function"
 	}
 ]

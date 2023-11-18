@@ -1,4 +1,5 @@
 import contractAbi from './smartDaoAbi.json';
+import tokenContractAbi from './tokenContractAbi.json';
 //import BigNumber from 'bignumber.js';
 
 export default class SmartDaoService {
@@ -6,6 +7,7 @@ export default class SmartDaoService {
     this.web3 = web3Instance;
     this.account = account;
     this.contract = new this.web3.eth.Contract(contractAbi, contractAddress);
+   
   }
   async getDAOs() {
     try {
@@ -17,12 +19,54 @@ export default class SmartDaoService {
     }
   }
 
+  async getSymbolOfToken(tokenContractAddress) {
+    try {
+      this.tokenContract = new this.web3.eth.Contract(tokenContractAbi, tokenContractAddress);
+      const symbol = await this.tokenContract.methods.symbol().call();
+      return symbol;
+    } catch (error) {
+      console.error('Error while getting symbol:', error);
+      throw error;
+    }
+  }
+
+  async getNameOfToken(tokenContractAddress) {
+    try {
+      this.tokenContract = new this.web3.eth.Contract(tokenContractAbi, tokenContractAddress);
+      const name = await this.tokenContract.methods.name().call();
+      return name;
+    } catch (error) {
+      console.error('Error while getting name:', error);
+      throw error;
+    }
+  }
+
+  async getDecimalsOfToken(tokenContractAddress) {
+    try {
+      this.tokenContract = new this.web3.eth.Contract(tokenContractAbi, tokenContractAddress);
+      const decimals = await this.tokenContract.methods.decimals().call();
+      return decimals;
+    } catch (error) {
+      console.error('Error while getting decimals:', error);
+      throw error;
+    }
+  }
+
+  async getTotalSupplyOfToken(tokenContractAddress) {
+    try {
+      this.tokenContract = new this.web3.eth.Contract(tokenContractAbi, tokenContractAddress);
+      const totalSupply = await this.tokenContract.methods.totalSupply().call();
+      return totalSupply;
+    } catch (error) {
+      console.error('Error while getting totalSupply:', error);
+      throw error;
+    }
+  }
+
   async createDao(
     daoName,
-    votingContract,
     votingOpener,
     voter,
-    treasuryContract,
     treasuryVotingOpener,
     treasuryVoter,
     logoURL,
@@ -32,10 +76,8 @@ export default class SmartDaoService {
       console.log('createDao');
       var transaction = await this.contract.methods.createNewDAO(
         daoName,
-        votingContract,
         votingOpener,
         voter,
-        treasuryContract,
         treasuryVotingOpener,
         treasuryVoter,
         logoURL,
@@ -259,8 +301,10 @@ export default class SmartDaoService {
   async getGeneralVoteResult(votingContractAddress, index) {
   try {
     const votings = await this.contract.methods.getGeneralVoteResult(votingContractAddress, index).call();
+    console.log(votings);
     //Votings will return string[] memory, uint256[] memory union these with order and return dictionary
-    const [choices, results] = votings;
+    const choices = votings[0];
+    const results = votings[1];
     const dictionary = {};
     for (let i = 0; i < choices.length; i++) {
       const choice = choices[i];
