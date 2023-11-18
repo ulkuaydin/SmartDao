@@ -1,6 +1,19 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.12;
 
+struct DAO {
+        uint256 index;
+        string daoName;
+        address votingContract;
+        address votingOpener;
+        address voter;
+        address treasuryVotingContract;
+        address treasuryVotingOpener;
+        address treasuryVoter;
+        string logoURL;
+        string website;
+}
+
 struct Voting {
         uint256 index;
         string votingName;
@@ -40,6 +53,7 @@ interface IDefaultERC721Factory{
 
 interface IStorage{
     function addNewDAO(string memory _daoName, address _votingContract, address _votingOpener, address _voter, address _treasuryContract, address _treasuryVotingOpener, address _treasuryVoter, string memory _logoURL, string memory _website) external;
+    function getDAOs() external view returns(DAO[] memory);
 }
 
 interface IVotingContract {
@@ -97,6 +111,12 @@ contract SmartDAORouter {
 
         emit daoCreated(_daoName, newVotingContract, _votingOpener, _voter, newTreasuryContract, _treasuryVotingOpener, _treasuryVoter, _logoURL, _website);
 
+    }
+
+    function getDAOs() public view returns(DAO[] memory) {
+        IStorage _storage = IStorage(StorageContract);
+
+        return _storage.getDAOs();
     }
 
     function createDefaultERC20(string memory _name, string memory _symbol, uint256 _totalSupply) public {
