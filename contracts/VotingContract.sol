@@ -35,7 +35,7 @@ contract VotingContract{
     function createNewVoting(string memory _votingName, string memory _votingDescription, string[] memory _choices) public {
         IToken _token = IToken(votingOpener);
 
-        require(_token.balanceOf(msg.sender) > 0);
+        require(_token.balanceOf(msg.sender) > 0, "Insufficient Balance");
 
         Voting memory newVoting = Voting({
             index: votingIndex,
@@ -55,7 +55,7 @@ contract VotingContract{
     function vote(uint256 _index, string memory _choice) public {
         IToken _token = IToken(voter);
 
-        require(_token.balanceOf(msg.sender) > 0);
+        require(_token.balanceOf(msg.sender) > 0, "Insufficient Balance");
         require(!isVoted[_index][msg.sender]);
 
         results[_index][_choice] += 1;

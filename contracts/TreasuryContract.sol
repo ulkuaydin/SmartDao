@@ -39,7 +39,7 @@ contract TreasuryContract{
     function createTreasuryVoting(string memory _votingName, string memory _votingDescription, address _to, uint256 _amount, address _tokenContract) public {
         IToken _token = IToken(votingOpener);
 
-        require(_token.balanceOf(msg.sender) > 0);
+        require(_token.balanceOf(msg.sender) > 0, "Insufficient Balance");
         
         TreasuryVoting memory newVoting = TreasuryVoting({
             index: votingIndex,
@@ -69,7 +69,7 @@ contract TreasuryContract{
         
         IToken _token = IToken(voter);
         
-        require(_token.balanceOf(msg.sender) > 0);
+        require(_token.balanceOf(msg.sender) > 0, "Insufficient Balance");
         require(!isVoted[_index][msg.sender]);
 
         if (_vote) {
