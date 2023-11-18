@@ -1,0 +1,13 @@
+@import 'bootstrap/dist/css/bootstrap.css';
+@import '../src/assets/styles/components/header.css';
+body{
+  color: #000;
+}
+button{
+  border:none;
+  outline:none;
+  width: max-content;
+  padding: 0.75rem;
+  border-radius: 0.25rem;
+  background:transparent;
+}
