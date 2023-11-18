@@ -62,4 +62,8 @@ contract Storage {
         daos.push(newDAO);
 
     }
+
+    function getDAOs() public view returns(DAO[] memory) {
+        return daos;
+    }
 }
