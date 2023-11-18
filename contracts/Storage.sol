@@ -4,7 +4,7 @@ pragma solidity ^0.8.12;
 contract Storage {
     address owner;
 
-    mapping(address => bool) isStorable;
+    mapping(address => bool) public isStorable;
 
     constructor(){
         owner = msg.sender;
