@@ -43,7 +43,7 @@ export const getWallet = createAsyncThunk('user/getWallet',async ()=>{
       MetaMaskService.registerChainChangedListener((chains) => {
         console.log('ChainChanged', chains);//TODO delete 
       });
-      console.log(connectResponse);
+      console.log('slice',connectResponse);
       return connectResponse;
 
     }
@@ -69,16 +69,18 @@ export const userSlice= createSlice({
     },
     extraReducers:(builder) =>{
     builder.addCase(getWallet.pending,(state)=>{
+        console.log('pending');
         state.success = false;
     })
-    builder.addCase(getWallet.fulfilled,(state,payload)=>{
-        
-        state.account = payload.account;
+    builder.addCase(getWallet.fulfilled,(state,action)=>{
+        console.log('fulfilled');
+        state.account = action.payload.account;
         state.success = true;
-        state.web3 = payload.web3;
-        // console.log(state.account);
+        state.web3 = action.payload.web3;
+        console.log('fullfulled state ',action.payload.account);
     })
     builder.addCase(getWallet.rejected,(state)=>{
+        console.log('rejected');
         state.success = false;
     })
     }
