@@ -1,0 +1,68 @@
+.dao {
+  border-radius: 30px;
+  border: 1px solid #fff;
+  background: rgba(251, 255, 253, 0.55);
+  backdrop-filter: blur(17.5px);
+  padding: 25px 55px;
+  min-height: 85vh;
+}
+
+.create-dao .create-dao-list .create-dao-item .logo,
+.discover-dao-item .logo {
+  width: 110px;
+  height: 110px;
+  border-radius: 1.5rem;
+  border: 1px solid #dcffed;
+
+  box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.1),
+    -1px 2px 2px 0px rgba(0, 0, 0, 0.09), -2px 4px 3px 0px rgba(0, 0, 0, 0.05),
+    -4px 7px 3px 0px rgba(0, 0, 0, 0.01), -6px 11px 3px 0px rgba(0, 0, 0, 0);
+}
+.create-dao-item .logo.route {
+  background: #80f0b3;
+}
+.discover-dao-item {
+  max-width: fit-content;
+}
+.discover-dao-search .search {
+  top: 50%;
+  transform: translateY(-50%);
+  right: 1rem;
+  padding: 0;
+}
+.discover-dao-search .search img {
+  vertical-align: sub;
+}
+.discover-dao-search .form-control {
+  padding-right: 2.5rem!important;
+  padding: 1rem 1.5rem;
+  border-radius: 15px;
+background: rgba(246, 246, 246, 0.70);
+box-shadow: -2px 3px 8px 0px rgba(0, 0, 0, 0.10);
+}
+
+.create-dao-title,
+.discover-dao-title {
+  font-size: 25px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 150%; /* 37.5px */
+  letter-spacing: -0.475px;
+}
+.create-dao-item h6,
+.discover-dao-item h6 {
+  color: #292d32;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 150%; /* 30px */
+  letter-spacing: -0.38px;
+}
+.logo span{
+    color: #292D32;
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 150%; /* 37.5px */
+    letter-spacing: -0.475px;
+}

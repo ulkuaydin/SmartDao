@@ -1,0 +1,667 @@
+[
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_VotingContractFactory",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "_TreasuryContractFactory",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "_DefaultERC20Factory",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "_DefaultERC721Factory",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "_StorageContract",
+				"type": "address"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"internalType": "string",
+				"name": "_daoName",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"internalType": "address",
+				"name": "VotingContract",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "address",
+				"name": "_votingOpener",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "address",
+				"name": "_voter",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "address",
+				"name": "TreasuryContract",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "address",
+				"name": "_treasuryVotingOpener",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "address",
+				"name": "_treasuryVoter",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "string",
+				"name": "_logoURL",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"internalType": "string",
+				"name": "_website",
+				"type": "string"
+			}
+		],
+		"name": "daoCreated",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "_contractAddress",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "string",
+				"name": "_name",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"internalType": "string",
+				"name": "_symbol",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "_totalSupply",
+				"type": "uint256"
+			}
+		],
+		"name": "erc20Created",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "_contractAddress",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "string",
+				"name": "_name",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"internalType": "string",
+				"name": "_symbol",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "_totalSupply",
+				"type": "uint256"
+			}
+		],
+		"name": "erc721Created",
+		"type": "event"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_newContract",
+				"type": "address"
+			}
+		],
+		"name": "changTreasuryContractFactory",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_newContract",
+				"type": "address"
+			}
+		],
+		"name": "changeDefaultERC20Factory",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_newContract",
+				"type": "address"
+			}
+		],
+		"name": "changeDefaultERC721Factory",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_newContract",
+				"type": "address"
+			}
+		],
+		"name": "changeVotingContractFactory",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_name",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_symbol",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_totalSupply",
+				"type": "uint256"
+			}
+		],
+		"name": "createDefaultERC20",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_name",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_symbol",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_totalSupply",
+				"type": "uint256"
+			}
+		],
+		"name": "createDefaultERC721",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_votingContractAddress",
+				"type": "address"
+			},
+			{
+				"internalType": "string",
+				"name": "_votingName",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_votingDescription",
+				"type": "string"
+			},
+			{
+				"internalType": "string[]",
+				"name": "_choices",
+				"type": "string[]"
+			}
+		],
+		"name": "createGeneralVoting",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_daoName",
+				"type": "string"
+			},
+			{
+				"internalType": "address",
+				"name": "_votingOpener",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "_voter",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "_treasuryVotingOpener",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "_treasuryVoter",
+				"type": "address"
+			},
+			{
+				"internalType": "string",
+				"name": "_logoURL",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_website",
+				"type": "string"
+			}
+		],
+		"name": "createNewDAO",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_treasuryVotingContractAddress",
+				"type": "address"
+			},
+			{
+				"internalType": "string",
+				"name": "_votingName",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_votingDescription",
+				"type": "string"
+			},
+			{
+				"internalType": "address",
+				"name": "_to",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_amount",
+				"type": "uint256"
+			},
+			{
+				"internalType": "address",
+				"name": "_tokenContract",
+				"type": "address"
+			}
+		],
+		"name": "createTreasuryVoting",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_treasuryVotingContractAddress",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_index",
+				"type": "uint256"
+			}
+		],
+		"name": "finishTreasuryVoting",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getDAOs",
+		"outputs": [
+			{
+				"components": [
+					{
+						"internalType": "uint256",
+						"name": "index",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "daoName",
+						"type": "string"
+					},
+					{
+						"internalType": "address",
+						"name": "votingContract",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "votingOpener",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "voter",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "treasuryVotingContract",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "treasuryVotingOpener",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "treasuryVoter",
+						"type": "address"
+					},
+					{
+						"internalType": "string",
+						"name": "logoURL",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "website",
+						"type": "string"
+					}
+				],
+				"internalType": "struct DAO[]",
+				"name": "",
+				"type": "tuple[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_votingContractAddress",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_index",
+				"type": "uint256"
+			}
+		],
+		"name": "getGeneralVoteResult",
+		"outputs": [
+			{
+				"internalType": "string[]",
+				"name": "",
+				"type": "string[]"
+			},
+			{
+				"internalType": "uint256[]",
+				"name": "",
+				"type": "uint256[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_votingContractAddress",
+				"type": "address"
+			}
+		],
+		"name": "getGeneralVotings",
+		"outputs": [
+			{
+				"components": [
+					{
+						"internalType": "uint256",
+						"name": "index",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "votingName",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "votingDescription",
+						"type": "string"
+					},
+					{
+						"internalType": "string[]",
+						"name": "choices",
+						"type": "string[]"
+					},
+					{
+						"internalType": "uint256",
+						"name": "endDate",
+						"type": "uint256"
+					}
+				],
+				"internalType": "struct Voting[]",
+				"name": "",
+				"type": "tuple[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_treasuryVotingContractAddress",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_index",
+				"type": "uint256"
+			}
+		],
+		"name": "getTreasuryVotingResult",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_treasuryVotingContractAddress",
+				"type": "address"
+			}
+		],
+		"name": "getTreasuryVotings",
+		"outputs": [
+			{
+				"components": [
+					{
+						"internalType": "uint256",
+						"name": "index",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "votingName",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "votingDescription",
+						"type": "string"
+					},
+					{
+						"internalType": "address",
+						"name": "to",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "tokenContract",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "yes",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "no",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "endDate",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bool",
+						"name": "isPaid",
+						"type": "bool"
+					}
+				],
+				"internalType": "struct TreasuryVoting[]",
+				"name": "",
+				"type": "tuple[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_votingContractAddress",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_index",
+				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "_choice",
+				"type": "string"
+			}
+		],
+		"name": "voteGeneral",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_treasuryVotingContractAddress",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_index",
+				"type": "uint256"
+			},
+			{
+				"internalType": "bool",
+				"name": "_vote",
+				"type": "bool"
+			}
+		],
+		"name": "voteTreasury",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	}
+]

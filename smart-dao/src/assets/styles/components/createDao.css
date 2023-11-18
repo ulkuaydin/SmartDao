@@ -1,0 +1,67 @@
+.create-dao-form {
+}
+.create-dao .create-dao-title {
+  margin-bottom: 56px;
+}
+.create-dao-form .progress-bar {
+  border-radius: 10px;
+  background: #f0f0f0;
+  box-shadow: 6px 4px 15px 0px rgba(0, 0, 0, 0.1),
+    23px 15px 27px 0px rgba(0, 0, 0, 0.09),
+    51px 34px 37px 0px rgba(0, 0, 0, 0.05),
+    91px 60px 44px 0px rgba(0, 0, 0, 0.01), 142px 93px 48px 0px rgba(0, 0, 0, 0);
+  width: 100%;
+  height: 10px;
+  margin-bottom: 55px;
+}
+.form-group label {
+  color: #292d32;
+  font-size: 25px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 150%; /* 37.5px */
+  letter-spacing: -0.475px;
+  text-wrap: nowrap;
+}
+.create-dao-form .form-group {
+  max-width: 50%;
+}
+.form-required {
+  margin-left: 1.5rem;
+}
+.form-required span {
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 150%; /* 24px */
+  letter-spacing: -0.304px;
+}
+.create-dao-button button {
+  border-radius: 15px;
+  background: #80f0b3;
+  box-shadow: -1px 1px 2px 0px rgba(0, 0, 0, 0.1),
+    -3px 3px 4px 0px rgba(0, 0, 0, 0.09), -6px 7px 5px 0px rgba(0, 0, 0, 0.05),
+    -11px 12px 6px 0px rgba(0, 0, 0, 0.01), -17px 18px 7px 0px rgba(0, 0, 0, 0);
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 150%; /* 37.5px */
+  letter-spacing: -0.475px;
+  padding: 13px 20px;
+  width: max-content;
+  min-width: 110px;
+}
+.create-dao-button button:disabled {
+  color: #29322a;
+}
+.question{
+    margin-bottom: 25px;
+}
+.question,.question-label {
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 150%; /* 37.5px */
+  letter-spacing: -0.475px;
+}
+

@@ -34,22 +34,24 @@ const Header = () => {
     }
   };
 
-
   return (
     <header>
       <div className="header">
         <div className="container">
-          <div className="d-flex justify-content-between h-100">
+          <div className="d-flex justify-content-between align-items-center h-100">
             <div className="logo">
               <img src="src/assets/react.svg" alt="..." />
             </div>
-           <div>{user.account}</div>
 
-            <div className="wallet">
-              <button type="button" onClick={connectWallet}>
-                Connect Wallet
-              </button>
-            </div>
+            {user.success ? (
+              <div>{user.account}</div>
+            ) : (
+              <div className="wallet">
+                <button type="button" onClick={connectWallet}>
+                  Connect Wallet
+                </button>
+              </div>
+            )}
           </div>
         </div>
       </div>

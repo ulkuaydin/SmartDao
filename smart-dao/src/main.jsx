@@ -6,6 +6,7 @@ import {store} from '../src/store.js';
 import {RouterProvider, createBrowserRouter} from 'react-router-dom';
 import Mainpage from './pages/Mainpage.jsx';
 import { Provider } from 'react-redux';
+import CreateDao from './pages/createDao/CreateDao.jsx';
 
 const router = createBrowserRouter([{
   path:"/",
@@ -16,7 +17,8 @@ const router = createBrowserRouter([{
       element:<Mainpage/>
     },
     {
-
+    path:"/createDao",
+    element:<CreateDao/>
     }
 
   ]
