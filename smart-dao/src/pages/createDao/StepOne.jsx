@@ -1,6 +1,6 @@
 import { useFormik } from "formik";
 import { useDispatch } from "react-redux";
-import { setIndex } from "../../redux/reducers/formSlice";
+import { setStateOne } from "../../redux/reducers/formSlice";
 
 const StepOne = () => {
 
@@ -32,7 +32,7 @@ const StepOne = () => {
         validate,
         onSubmit: (values) => {
           console.log(values);
-          dispatch(setIndex());
+          dispatch(setStateOne(values));
         },
       });
     
