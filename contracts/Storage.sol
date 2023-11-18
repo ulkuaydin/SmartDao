@@ -11,12 +11,12 @@ contract Storage {
     }
 
     modifier only_owner {
-        require(msg.sender == owner);
+        require(msg.sender == owner, "Address is not owner");
         _;
     }
 
     modifier only_storable {
-        require(isStorable[msg.sender]);
+        require(isStorable[msg.sender], "Address is not storable");
         _;
     }
 

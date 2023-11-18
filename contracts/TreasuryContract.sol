@@ -12,6 +12,8 @@ contract TreasuryContract{
     address public votingOpener;
     address public voter;
 
+    bool public isStillVoting;
+
     mapping(uint256 => mapping(address => bool)) isVoted;
 
     struct TreasuryVoting {
@@ -36,11 +38,19 @@ contract TreasuryContract{
 
     TreasuryVoting[] votings;
 
-    function createTreasuryVoting(address _caller, string memory _votingName, string memory _votingDescription, address _to, uint256 _amount, address _tokenContract) public {
+    function createTreasuryVoting(string memory _votingName, string memory _votingDescription, address _to, uint256 _amount, address _tokenContract) public {
+        require(!isStillVoting);
+        IToken _votingOpener = IToken(votingOpener);
+        
+        require(_votingOpener.balanceOf(votingOpener) > 0);
+
         IToken _token = IToken(votingOpener);
 
-        require(_token.balanceOf(_caller) > 0, "Insufficient Balance");
-        require(address(this).balance >= _amount);
+        if (_to == address(0x0)) {
+            require(address(this).balance >= _amount);
+        } else {
+            require(_token.balanceOf(address(this)) > _amount, "Insufficient Balance");
+        }
         
         TreasuryVoting memory newVoting = TreasuryVoting({
             index: votingIndex,
@@ -57,6 +67,8 @@ contract TreasuryContract{
 
         votings.push(newVoting);
         votingIndex++;
+
+        isStillVoting = true;
 
         emit VotingCreated(newVoting.index, newVoting.votingName, newVoting.votingDescription, newVoting.to, newVoting.amount, newVoting.tokenContract, newVoting.endDate);
     }
@@ -103,6 +115,8 @@ contract TreasuryContract{
                 voting.isPaid = true;
             }
         }
+
+        isStillVoting = false;
     }
 
     function getResult(uint256 _index) public view returns (uint256 yesVotes, uint256 noVotes) {
@@ -112,7 +126,6 @@ contract TreasuryContract{
 
         return (voting.yes, voting.no);
 }
-
 
     receive() external payable { }
 }

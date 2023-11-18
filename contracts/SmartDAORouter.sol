@@ -64,7 +64,7 @@ interface IVotingContract {
 }
 
 interface ITreasuryVotingContract {
-    function createTreasuryVoting(address _caller, string memory _votingName, string memory _votingDescription, address _to, uint256 _amount, address _tokenContract) external;
+    function createTreasuryVoting(string memory _votingName, string memory _votingDescription, address _to, uint256 _amount, address _tokenContract) external;
     function vote(address _caller, uint256 _index, bool _vote) external;
     function getVotings() external view returns(TreasuryVoting[] memory);
     function getResult(uint256 _index) external view returns (uint256 yesVotes, uint256 noVotes);
@@ -72,12 +72,12 @@ interface ITreasuryVotingContract {
 }
 
 contract SmartDAORouter {
-    uint256 daoIndex;
-    address VotingContractFactory;
-    address TreasuryContractFactory;
-    address DefaultERC20Factory;
-    address DefaultERC721Factory;
-    address StorageContract;
+    uint256 public daoIndex;
+    address public VotingContractFactory;
+    address public TreasuryContractFactory;
+    address public DefaultERC20Factory;
+    address public DefaultERC721Factory;
+    address public StorageContract;
 
     address owner;
 
@@ -150,7 +150,7 @@ contract SmartDAORouter {
 
     function createTreasuryVoting(address _treasuryVotingContractAddress, string memory _votingName, string memory _votingDescription, address _to, uint256 _amount, address _tokenContract) public {
         ITreasuryVotingContract _treasuryVotingContract = ITreasuryVotingContract(_treasuryVotingContractAddress);
-        _treasuryVotingContract.createTreasuryVoting(msg.sender, _votingName, _votingDescription, _to, _amount, _tokenContract);
+        _treasuryVotingContract.createTreasuryVoting(_votingName, _votingDescription, _to, _amount, _tokenContract);
     }
 
     function voteTreasury(address _treasuryVotingContractAddress, uint256 _index, bool _vote) public {
@@ -210,5 +210,9 @@ contract SmartDAORouter {
 
     function changeDefaultERC721Factory(address _newContract) public only_owner {
         DefaultERC721Factory = _newContract;
+    }
+
+    function changeStorageContract(address _newContract) public only_owner {
+        StorageContract = _newContract;
     }
 }
