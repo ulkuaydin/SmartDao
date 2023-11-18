@@ -2,7 +2,6 @@
 pragma solidity ^0.8.12;
 
 contract Storage {
-    uint256 daoIndex;
     address owner;
 
     mapping(address => bool) isStorable;
@@ -44,22 +43,8 @@ contract Storage {
         isStorable[_contractAddress] = false;
     }
 
-    function addNewDAO(string memory _daoName, address _votingContract, address _votingOpener, address _voter, address _treasuryContract, address _treasuryVotingOpener, address _treasuryVoter, string memory _logoURL, string memory _website) public only_storable {
-        DAO memory newDAO = DAO({
-            index: daoIndex,
-            daoName: _daoName,
-            votingContract: _votingContract,
-            votingOpener: _votingOpener,
-            voter: _voter,
-            treasuryVotingContract: _treasuryContract,
-            treasuryVotingOpener: _treasuryVotingOpener,
-            treasuryVoter: _treasuryVoter,
-            logoURL: _logoURL,
-            website: _website
-        });
-
-        daoIndex++;
-        daos.push(newDAO);
+    function addNewDAO(DAO memory _newDAO) public only_storable {
+        daos.push(_newDAO);
 
     }
 

@@ -52,7 +52,7 @@ interface IDefaultERC721Factory{
 }
 
 interface IStorage{
-    function addNewDAO(string memory _daoName, address _votingContract, address _votingOpener, address _voter, address _treasuryContract, address _treasuryVotingOpener, address _treasuryVoter, string memory _logoURL, string memory _website) external;
+    function addNewDAO(DAO memory _newDAO) external;
     function getDAOs() external view returns(DAO[] memory);
 }
 
@@ -72,6 +72,7 @@ interface ITreasuryVotingContract {
 }
 
 contract SmartDAORouter {
+    uint256 daoIndex;
     address VotingContractFactory;
     address TreasuryContractFactory;
     address DefaultERC20Factory;
@@ -95,7 +96,7 @@ contract SmartDAORouter {
         _;
     }
 
-    event daoCreated(string _daoName, address VotingContract, address _votingOpener, address _voter, address TreasuryContract, address _treasuryVotingOpener, address _treasuryVoter, string _logoURL, string _website);
+    event daoCreated(uint256 indexed _index, address VotingContract, address TreasuryContract);
     event erc20Created(address indexed _contractAddress, string _name, string _symbol, uint256 _totalSupply);
     event erc721Created(address indexed _contractAddress, string _name, string _symbol, uint256 _totalSupply);
 
@@ -106,11 +107,25 @@ contract SmartDAORouter {
         ITreasuryContractFactory treasuryContract = ITreasuryContractFactory(TreasuryContractFactory);
         address newTreasuryContract = treasuryContract.createTreasuryContract(_treasuryVotingOpener, _treasuryVoter);
     
+        DAO memory newDAO = DAO({
+            index: daoIndex,
+            daoName: _daoName,
+            votingContract: newVotingContract,
+            votingOpener: _votingOpener,
+            voter: _voter,
+            treasuryVotingContract: newTreasuryContract,
+            treasuryVotingOpener: _treasuryVotingOpener,
+            treasuryVoter: _treasuryVoter,
+            logoURL: _logoURL,
+            website: _website
+        });
+
         IStorage _storageContract = IStorage(StorageContract);
-        _storageContract.addNewDAO(_daoName, newVotingContract, _votingOpener, _voter, newTreasuryContract, _treasuryVotingOpener, _treasuryVoter, _logoURL, _website);
+        _storageContract.addNewDAO(newDAO);
 
-        emit daoCreated(_daoName, newVotingContract, _votingOpener, _voter, newTreasuryContract, _treasuryVotingOpener, _treasuryVoter, _logoURL, _website);
+        emit daoCreated(daoIndex, newVotingContract, newTreasuryContract);
 
+        daoIndex++;
     }
 
     function getDAOs() public view returns(DAO[] memory) {
