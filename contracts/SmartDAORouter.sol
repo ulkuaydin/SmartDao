@@ -44,7 +44,7 @@ interface ITreasuryContractFactory {
 }
 
 interface IDefaultERC20Factory {
-    function createDefaultERC20(string memory _name, string memory _symbol, uint256 _totalSupply) external returns(address);
+    function createDefaultERC20(string memory _name, string memory _symbol, uint256 _totalSupply, address _creator) external returns(address);
 }
 
 interface IDefaultERC721Factory{
@@ -136,7 +136,7 @@ contract SmartDAORouter {
 
     function createDefaultERC20(string memory _name, string memory _symbol, uint256 _totalSupply) public {
         IDefaultERC20Factory _newERC20 = IDefaultERC20Factory(DefaultERC20Factory);
-        address newERC20 = _newERC20.createDefaultERC20(_name, _symbol, _totalSupply);
+        address newERC20 = _newERC20.createDefaultERC20(_name, _symbol, _totalSupply, msg.sender);
 
         emit erc20Created(newERC20, _name, _symbol, _totalSupply);
     }

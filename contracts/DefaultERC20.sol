@@ -14,12 +14,12 @@ contract DefaultERC20 {
     event Transfer(address indexed from, address indexed to, uint256 value);
     event Approval(address indexed owner, address indexed spender, uint256 value);
 
-    constructor(string memory _name, string memory _symbol, uint256 _totalSupply) {
+    constructor(string memory _name, string memory _symbol, uint256 _totalSupply, address _creator) {
         name = _name;
         symbol = _symbol;
         totalSupply = _totalSupply;
-        balanceOf[msg.sender] = totalSupply;
-        emit Transfer(address(0), msg.sender, totalSupply);
+        balanceOf[_creator] = totalSupply;
+        emit Transfer(address(0), _creator, totalSupply);
     }
 
     function transfer(address _to, uint256 _value) public returns (bool success) {
