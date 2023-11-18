@@ -57,15 +57,15 @@ interface IStorage{
 }
 
 interface IVotingContract {
-    function createNewVoting(string memory _votingName, string memory _votingDescription, string[] memory _choices) external;
-    function vote(uint256 _index, string memory _choice) external;
+    function createNewVoting(address _caller, string memory _votingName, string memory _votingDescription, string[] memory _choices) external;
+    function vote(address _caller, uint256 _index, string memory _choice) external;
     function getVotings() external view returns(Voting[] memory);
     function getResult(uint256 _index) external view returns (string[] memory, uint256[] memory);
 }
 
 interface ITreasuryVotingContract {
-    function createTreasuryVoting(string memory _votingName, string memory _votingDescription, address _to, uint256 _amount, address _tokenContract) external;
-    function vote(uint256 _index, bool _vote) external;
+    function createTreasuryVoting(address _caller, string memory _votingName, string memory _votingDescription, address _to, uint256 _amount, address _tokenContract) external;
+    function vote(address _caller, uint256 _index, bool _vote) external;
     function getVotings() external view returns(TreasuryVoting[] memory);
     function getResult(uint256 _index) external view returns (uint256 yesVotes, uint256 noVotes);
     function finishContract(uint256 _index) external;
@@ -150,12 +150,12 @@ contract SmartDAORouter {
 
     function createTreasuryVoting(address _treasuryVotingContractAddress, string memory _votingName, string memory _votingDescription, address _to, uint256 _amount, address _tokenContract) public {
         ITreasuryVotingContract _treasuryVotingContract = ITreasuryVotingContract(_treasuryVotingContractAddress);
-        _treasuryVotingContract.createTreasuryVoting(_votingName, _votingDescription, _to, _amount, _tokenContract);
+        _treasuryVotingContract.createTreasuryVoting(msg.sender, _votingName, _votingDescription, _to, _amount, _tokenContract);
     }
 
     function voteTreasury(address _treasuryVotingContractAddress, uint256 _index, bool _vote) public {
         ITreasuryVotingContract _treasuryVotingContract = ITreasuryVotingContract(_treasuryVotingContractAddress);
-        _treasuryVotingContract.vote(_index, _vote);
+        _treasuryVotingContract.vote(msg.sender, _index, _vote);
     }
 
     function getTreasuryVotings(address _treasuryVotingContractAddress) public view returns(TreasuryVoting[] memory){
@@ -178,12 +178,12 @@ contract SmartDAORouter {
 
     function createGeneralVoting(address _votingContractAddress, string memory _votingName, string memory _votingDescription, string[] memory _choices) public {
         IVotingContract _votingContract = IVotingContract(_votingContractAddress);
-        _votingContract.createNewVoting(_votingName, _votingDescription, _choices);
+        _votingContract.createNewVoting(msg.sender, _votingName, _votingDescription, _choices);
     }
 
     function voteGeneral(address _votingContractAddress, uint256 _index, string memory _choice) public {
         IVotingContract _votingContract = IVotingContract(_votingContractAddress);
-        _votingContract.vote(_index, _choice);
+        _votingContract.vote(msg.sender, _index, _choice);
     }
 
     function getGeneralVotings(address _votingContractAddress) public view returns(Voting[] memory) {

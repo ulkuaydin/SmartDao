@@ -36,10 +36,11 @@ contract TreasuryContract{
 
     TreasuryVoting[] votings;
 
-    function createTreasuryVoting(string memory _votingName, string memory _votingDescription, address _to, uint256 _amount, address _tokenContract) public {
+    function createTreasuryVoting(address _caller, string memory _votingName, string memory _votingDescription, address _to, uint256 _amount, address _tokenContract) public {
         IToken _token = IToken(votingOpener);
 
-        require(_token.balanceOf(msg.sender) > 0, "Insufficient Balance");
+        require(_token.balanceOf(_caller) > 0, "Insufficient Balance");
+        require(address(this).balance >= _amount);
         
         TreasuryVoting memory newVoting = TreasuryVoting({
             index: votingIndex,
@@ -60,7 +61,7 @@ contract TreasuryContract{
         emit VotingCreated(newVoting.index, newVoting.votingName, newVoting.votingDescription, newVoting.to, newVoting.amount, newVoting.tokenContract, newVoting.endDate);
     }
 
-    function vote(uint256 _index, bool _vote) public {
+    function vote(address _caller, uint256 _index, bool _vote) public {
         require(_index < votings.length, "Voting index is out of range");
 
         TreasuryVoting storage voting = votings[_index];
@@ -69,8 +70,8 @@ contract TreasuryContract{
         
         IToken _token = IToken(voter);
         
-        require(_token.balanceOf(msg.sender) > 0, "Insufficient Balance");
-        require(!isVoted[_index][msg.sender]);
+        require(_token.balanceOf(_caller) > 0, "Insufficient Balance");
+        require(!isVoted[_index][_caller]);
 
         if (_vote) {
             voting.yes += 1;
@@ -78,7 +79,7 @@ contract TreasuryContract{
             voting.no += 1;
         }
 
-        isVoted[_index][msg.sender] = true;
+        isVoted[_index][_caller] = true;
 }
 
     function getVotings() public view returns(TreasuryVoting[] memory){

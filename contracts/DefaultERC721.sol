@@ -35,7 +35,7 @@ contract DefaultERC721 {
         emit Transfer(from, to, tokenId);
     }
 
-    function _mint(address to, uint256 tokenId) internal {
+    function _mint(address to, uint256 tokenId) public {
         require(to != address(0), "Address zero is not valid");
         require(_tokenOwner[tokenId] == address(0), "Token already minted");
         require(tokenId <= totalSupply);

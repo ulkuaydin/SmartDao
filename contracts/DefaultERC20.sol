@@ -2,7 +2,6 @@
 pragma solidity ^0.8.16;
 
 contract DefaultERC20 {
-    // Değişkenler
     string public name;
     string public symbol;
     uint8 public decimals = 18;
