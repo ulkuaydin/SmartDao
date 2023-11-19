@@ -17,10 +17,10 @@ const Header = () => {
     const connectResponse = await MetaMaskService.connectToMetaMask();
     if (connectResponse.success) {
       dispatch(setUser(connectResponse));
-      console.log(connectResponse);
+  
 
       MetaMaskService.registerAccountsChangedListener((accounts) => {
-        console.log("accountsChanged", accounts); //TODO delete
+    
         if (accounts.length > 0) {
           dispatch(setUserAccount(accounts[0]));
         } else {
@@ -30,9 +30,7 @@ const Header = () => {
 
       MetaMaskService.registerChainChangedListener((chainId) => {
         var chainId =parseInt(str( chainId), 10);
-        console.log("ChainChanged", chainId); //TODO delete
-
-       // window.location.reload();
+     
       });
     }
   };

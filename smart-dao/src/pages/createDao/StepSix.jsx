@@ -1,8 +1,7 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import SmartDaoService from "../../utils/smartDaoService";
 import Web3 from "web3";
-import metamaskService from "../../utils/metamaskService";
-import { setIndex } from "../../redux/reducers/formSlice";
+
 
 const StepSix = () => {
       const allData = useSelector((state) => state.form);
@@ -12,7 +11,7 @@ const StepSix = () => {
   const createDao = async ()=>{
     try {
           const web3 = new Web3(window.ethereum);
-          console.log("data",web3)
+     
         const daoService = new SmartDaoService("0xb00A7CD04b0d005702aFC4f5ccB3671E0F5bF512", web3,user.account);
   
   
@@ -20,7 +19,7 @@ const StepSix = () => {
   
         // Begin listening for DaoCreated events
         daoService.listenToDaoCreated((eventData) => {
-          console.log('New DAO Created:' + eventData[1], eventData);
+         
         });
   
         const tx = await daoService.createDao(

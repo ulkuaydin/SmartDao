@@ -31,7 +31,7 @@ const StepOne = () => {
         },
         validate,
         onSubmit: (values) => {
-          console.log(values);
+      
           dispatch(setStateOne(values));
         },
       });

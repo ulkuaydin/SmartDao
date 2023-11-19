@@ -62,7 +62,7 @@ const StepThree = () => {
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen);
     const element = document.getElementById("dao");
-    console.log("element", element);
+
     element.style.display = isModalOpen ? "block" : "contents";
   };
 
@@ -103,7 +103,7 @@ const StepThree = () => {
         }
       }
     }
-    console.log("validate errors", errors,values);
+   
     return errors;
   };
 
@@ -122,14 +122,14 @@ const StepThree = () => {
     },
     validate,
     onSubmit: async (values) => {
-      console.log('submit',values);
+    
       if (
         values.address === "" &&
         (values.haveNft === "no" || values.haveToken === "no")
       ) {
         let web3 = new Web3(window.ethereum);
         const accounts = await web3.eth.getAccounts();
-        console.log("get account", metamaskService.getAccount());
+     
         let newService = new SmartDaoService(
           "0xb00A7CD04b0d005702aFC4f5ccB3671E0F5bF512",//TODO get this from app consntan or use service singleton
           web3,
@@ -138,7 +138,7 @@ const StepThree = () => {
         if (values.voterType === "token") {
           // Begin listening for DaoCreated events
           newService.listenToERC20Created((eventData) => {
-            console.log("New ERC20 Created:", eventData._contractAddress);
+          
             setContractAddress(eventData._contractAddress);
             
             //Set values 
@@ -156,7 +156,7 @@ const StepThree = () => {
         } else  {
 
           newService.listenToERC721Created((eventData) => {
-            console.log("New ERC721 Created:", eventData._contractAddress);
+       
             setContractAddress(eventData._contractAddress);
 
             //Set values

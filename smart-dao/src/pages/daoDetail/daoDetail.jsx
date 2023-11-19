@@ -76,8 +76,6 @@ const DaoDetail = () => {
   }, []); // The empty array as the second argument ensures this runs once on mount
 
  
-  console.log("votings", votings == null ? [] : votings[0]);
-  console.log("votings ->", votings == null ? [] : votings[0]["results"]);
   return (
     <div className="container">
       <div className="row g-5">
