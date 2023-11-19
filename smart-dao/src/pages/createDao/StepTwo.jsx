@@ -45,7 +45,7 @@ const Modal = ({ isOpen, toggleModal, contractAddress, dispatch }) => {
               </div>
             </div>
           </div>
-          <div className="modal-footer text-center border-top-0">
+          <div className="modal-footer text-center justify-content-center border-top-0">
             <button type="button" className="submit" onClick={toggleModal}>
               Next
             </button>

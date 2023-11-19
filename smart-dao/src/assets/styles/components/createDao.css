@@ -1,7 +1,7 @@
 .create-dao-form {
 }
 .create-dao .create-dao-title {
-  margin-bottom: 56px;
+  
 }
 .create-dao-form .progress-bar {
   border-radius: 10px;
@@ -75,4 +75,27 @@ letter-spacing: -0.304px;
 .modal-body img{
     object-fit: cover;
     width: 100%;
+}
+.create-dao-preview{
+    font-size: 25px;
+font-style: normal;
+font-weight: 600;
+line-height: 150%; /* 37.5px */
+letter-spacing: -0.475px;
+padding-left: 1rem;
+border-left:1px solid #292d32;
+}
+.left{
+    font-size: 25px;
+font-style: normal;
+font-weight: 700;
+line-height: 150%; /* 37.5px */
+letter-spacing: -0.475px;
+}
+.right{
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 150%; /* 37.5px */
+    letter-spacing: -0.475px;
 }

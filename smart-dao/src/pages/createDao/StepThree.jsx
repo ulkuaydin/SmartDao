@@ -19,13 +19,13 @@ const Modal = ({ isOpen, toggleModal, contractAddress,dispatch }) => {
         <div className="modal-content">
           <div className="modal-header justify-content-end border-bottom-0">
             <button type="button" className="p-0" onClick={toggleModal}>
-              <img src="src/assets/close-square.svg" alt="..."></img>
+              <img src="/close-square.svg" alt="..."></img>
             </button>
           </div>
           <div className="modal-body">
             <div className="row">
               <div className="col-lg-4">
-                <img src="src/assets/coin.svg"></img>
+                <img src="/coin.svg"></img>
               </div>
               <div className="col-lg-8">
                 <div className="px-3">
@@ -46,7 +46,7 @@ const Modal = ({ isOpen, toggleModal, contractAddress,dispatch }) => {
               </div>
             </div>
           </div>
-          <div className="modal-footer text-center border-top-0">
+          <div className="modal-footer text-center justify-content-center border-top-0">
             <button type="button" className="submit" onClick={toggleModal}>Next</button>
           </div>
         </div>

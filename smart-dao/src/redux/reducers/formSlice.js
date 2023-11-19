@@ -4,10 +4,14 @@ import { createSlice } from "@reduxjs/toolkit"
 const initialState = {
     index:0,
     daoName :'',
-    votingOpener:'',
-    voter:'',
+    votingType:'',
+    generalVotingOpener:'',
+    generalVoter:'',
+    voterType:'',
     treasuryVotingOpener:'',
     treasuryVoter:'',
+    treasuryVoterType:'',
+    treasuryVotingType:'',
     logoURL:'',
     daoWebsite:''
 }
@@ -27,16 +31,26 @@ export const formSlice = createSlice({
         },
         setStateTwo:(state,action)=>{
             state.index += 1;
-            state.votingOpener = action.payload.address;
-            state.treasuryVotingOpener = action.payload.address;
+            state.generalVotingOpener = action.payload.address;
+            state.voterType = action.payload.voterType;
         },
         setStateThree:(state,action)=>{
             state.index += 1;
-            state.voter = action.payload.address;
+            state.generalVoter = action.payload.address;
+            state.votingType = action.payload.voterType;
+        },
+        setStateFour:(state,action)=>{
+            state.index +=1;
+            state.treasuryVotingOpener = action.payload.address;
+            state.treasuryVotingType = action.payload.voterType;
+        },
+        setStateFive:(state,action)=>{
+            state.index += 1;
             state.treasuryVoter = action.payload.address;
+            state.treasuryVoterType = action.payload.voterType;
         }
     }
 })
 
-export const { setIndex,setStateOne, setStateTwo,setStateThree} = formSlice.actions;
+export const { setIndex,setStateOne, setStateTwo,setStateThree,setStateFour,setStateFive} = formSlice.actions;
 export default formSlice.reducer;

@@ -8,7 +8,7 @@
 }
 
 .create-dao .create-dao-list .create-dao-item .logo,
-.discover-dao-item .logo {
+.discover-dao-item .logo,.create-dao-preview-page .logo {
   width: 110px;
   height: 110px;
   border-radius: 1.5rem;
@@ -65,4 +65,12 @@ box-shadow: -2px 3px 8px 0px rgba(0, 0, 0, 0.10);
     font-weight: 600;
     line-height: 150%; /* 37.5px */
     letter-spacing: -0.475px;
+}
+
+.create-dao-preview-page h6{
+    font-size: 25px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 150%; /* 37.5px */
+  letter-spacing: -0.475px;
 }
