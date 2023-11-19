@@ -99,3 +99,11 @@ letter-spacing: -0.475px;
     line-height: 150%; /* 37.5px */
     letter-spacing: -0.475px;
 }
+.form-group.vote label{
+    font-size: 20px;
+font-style: normal;
+font-weight: 700;
+line-height: 150%; /* 30px */
+letter-spacing: -0.38px;
+
+}
