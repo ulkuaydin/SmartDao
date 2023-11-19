@@ -28,8 +28,11 @@ const Header = () => {
         }
       });
 
-      MetaMaskService.registerChainChangedListener((chains) => {
-        console.log("ChainChanged", chains); //TODO delete
+      MetaMaskService.registerChainChangedListener((chainId) => {
+        var chainId =parseInt(str( chainId), 10);
+        console.log("ChainChanged", chainId); //TODO delete
+
+       // window.location.reload();
       });
     }
   };

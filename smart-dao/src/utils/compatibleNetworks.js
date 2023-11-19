@@ -1,0 +1,10 @@
+
+compatibleNetworks ={
+
+    '534351': '0xb00A7CD04b0d005702aFC4f5ccB3671E0F5bF512',
+    '11155111': '0xb00A7CD04b0d005702aFC4f5ccB3671E0F5bF512', // Polygon zkEVM Testnet
+    '1442': '0xb00A7CD04b0d005702aFC4f5ccB3671E0F5bF512',
+    '5001': '0xb00A7CD04b0d005702aFC4f5ccB3671E0F5bF512', // Mantle testnet
+    '421614': '0x3f49C681EbCb5bEd519392b3dC952d3AC93E2658', // Arbitrum Sepolia Testnet
+    '84532': '0x3f49C681EbCb5bEd519392b3dC952d3AC93E2658', // BASE Sepolia Testnet
+}

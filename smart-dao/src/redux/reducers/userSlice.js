@@ -41,7 +41,12 @@ export const getWallet = createAsyncThunk('user/getWallet',async ()=>{
       });
 
       MetaMaskService.registerChainChangedListener((chains) => {
-        console.log('ChainChanged', chains);//TODO delete 
+        var chainId =parseInt( chains, 16);
+        console.log('ChainChanged', parseInt( chains, 16));//TODO delete 
+
+        window.location.reload();
+
+        
       });
       console.log('slice',connectResponse);
       return connectResponse;
