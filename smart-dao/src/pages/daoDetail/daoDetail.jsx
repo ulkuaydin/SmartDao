@@ -8,6 +8,7 @@ const DaoDetail = () => {
   const { id } = useParams();
   useEffect(() => {}, []);
   const [account, setAccounts] = useState(null);
+  const [votings, setVotings] = useState(null);
 
   useEffect(() => {
     // Create an instance of Web3
@@ -29,6 +30,23 @@ const DaoDetail = () => {
             return;
           }
           setAccounts(dao);
+
+          //get vointgs getGeneralVotings
+          newService.getGeneralVotings(dao.votingContract).then((votings) => {
+
+            //set results of votings 
+            votings.forEach(async voting => {
+                var result = await newService.getGeneralVoteResult(dao.votingContract,voting.index);
+                voting.results = result;
+
+            });
+
+
+            setVotings(votings);
+            
+          });
+
+
         });
       })
       .catch((error) => {
@@ -36,7 +54,8 @@ const DaoDetail = () => {
         console.error("Error fetching accounts:", error);
       });
   }, []); // The empty array as the second argument ensures this runs once on mount
-console.log('connected account',account);
+  console.log('votings',votings==null?[]:votings[0]);
+  console.log('votings ->',votings==null?[]:votings[0]['results']);
   return (
     <div className="container">
       <div className="row g-5">
@@ -96,78 +115,48 @@ console.log('connected account',account);
               </div>
             </div>
             <div className="dao-vote-list">
-              <div className="dao-vote-item">
+
+
+            {votings?.map((item)=>
+              <div className="dao-vote-item" key={item.index}>
                 <div className="dao-vote-item-header d-flex justify-content-between w-100">
-                  <h6 className="mb-0">General Voting Title</h6>
+                  <h6 className="mb-0">{item.votingName}</h6>
                   <span className="green">Open</span>
                 </div>
                 <div className="dao-vote-item-body mt-3">
                   <p className="description">
-                    Voting description will be placed here, voting description
-                    will be placed here but we will use this sentence for now as
-                    a placeholder, because why not blablah haha haha...
+                    {item.votingDescription}
                   </p>
                   <div className="choices">
-                    <div className="choices-item align-items-center  mb-3">
-                      <div className="row align-items-center ">
-                        <div className="col-lg-3">
-                          <div className="form-check">
-                            <input
-                              type="radio"
-                              className="input-checkbox"
-                            ></input>
-                            <label htmlFor="" className="ms-2">
-                              Option One
-                            </label>
+
+                  {item.choices?.map((key,value)=>
+                      <div className="choices-item align-items-center  mb-3" key={key}>
+                        <div className="row align-items-center ">
+                          <div className="col-lg-3">
+                            <div className="form-check">
+                              <input
+                                type="radio"
+                                className="input-checkbox"
+                              ></input>
+                              <label htmlFor="" className="ms-2">
+                                {key}
+                              </label>
+                            </div>
+                          </div>
+                          <div className="col-lg-9">
+                            <div className="progress-choice position-relative"></div>
                           </div>
                         </div>
-                        <div className="col-lg-9">
-                          <div className="progress-choice position-relative"></div>
-                        </div>
                       </div>
-                    </div>
-                    <div className="choices-item align-items-center  mb-3">
-                      <div className="row align-items-center">
-                        <div className="col-lg-3">
-                          <div className="form-check">
-                            <input
-                              type="radio"
-                              className="input-checkbox"
-                            ></input>
-                            <label htmlFor="" className="ms-2">
-                              Option One
-                            </label>
-                          </div>
-                        </div>
-                        <div className="col-lg-9">
-                          <div className="progress-choice position-relative"></div>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="choices-item align-items-center  mb-3">
-                      <div className="row align-items-center">
-                        <div className="col-lg-3">
-                          <div className="form-check">
-                            <input
-                              type="radio"
-                              className="input-checkbox"
-                            ></input>
-                            <label htmlFor="" className="ms-2">
-                              Option One
-                            </label>
-                          </div>
-                        </div>
-                        <div className="col-lg-9">
-                          <div className="progress-choice position-relative"></div>
-                        </div>
-                      </div>
-                    </div>
+                  )}
+
                   </div>
                   <div className="col-lg-12 text-end">
-                    <span className="date">Ends on 19.11.2023</span>
+                    <span className="date">Ends on {(new Date(Number(item.endDate) * 1000)).toLocaleString()}</span>
                   </div>
                 </div>
               </div>
+            )}
             </div>
           </div>
         </div>
