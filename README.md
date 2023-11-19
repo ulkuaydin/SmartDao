@@ -3,7 +3,11 @@ SmartDAO is a revolutionary platform designed at the ETHGlobal hackathon that en
 
 # Features
 No-Code Contract Generation: Create Voting and Treasury contracts without writing a single line of code.
+
 ERC20 and ERC721 Token Integration: Easily create and manage standard tokens and NFTs within your DAO.
+
 Flexible Voting Mechanisms: Set up customizable voting systems tailored to your organization's needs.
+
 Treasury Management: Efficiently manage your DAO's financial assets and decisions.
+
 User-Friendly Interface: Designed with simplicity in mind for non-technical users.
