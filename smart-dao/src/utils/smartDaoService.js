@@ -9,15 +9,29 @@ export default class SmartDaoService {
     this.contract = new this.web3.eth.Contract(contractAbi, contractAddress);
    
   }
-  async getDAOs() {
+  async getDAOs(index = null) {
     try {
       const daos = await this.contract.methods.getDAOs().call();
-      return daos;
+      // Convert BigInt to strings for each DAO object
+      const serializableDaos = daos.map(dao => 
+        JSON.parse(JSON.stringify(dao, (_, value) => 
+          typeof value === 'bigint' ? parseInt( value.toString()) : value
+        ))
+      );
+      
+
+      if (index !== null) {
+        return serializableDaos[index];
+      }
+      
+      return serializableDaos;
     } catch (error) {
       console.error('Error while getting DAOs:', error);
       throw error;
     }
   }
+
+  
 
   async getSymbolOfToken(tokenContractAddress) {
     try {
